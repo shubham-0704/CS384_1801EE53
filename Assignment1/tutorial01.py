@@ -55,7 +55,7 @@ def power(num1, num2): #num1 ^ num2
 #You cant use the inbuilt python function. Write your own function
 def printGP(a, r, n):
 	if isinstance(a,(int,float)) and isinstance(r,(int,float)) and isinstance(n,(int,float)):
-		if(n==int(n)):
+		if(n==int(n)and n>0):
 			gp=[]
 			for i in range(int(n)):
 				gp.append(a*power(r,i))
@@ -68,7 +68,7 @@ def printGP(a, r, n):
 #You cant use the inbuilt python function. Write your own function
 def printAP(a, d, n):
 	if isinstance(a,(int,float)) and isinstance(d,(int,float)) and isinstance(n,(int,float)):
-		if(n==int(n)):
+		if(n==int(n) and n>0):
 			ap=[]
 			for i in range(int(n)): ap.append(a+i*d) 
 			ap=[round(x,3) for x in ap]
@@ -80,7 +80,7 @@ def printAP(a, d, n):
 #You cant use the inbuilt python function. Write your own function
 def printHP(a, d, n):
 	if isinstance(a,(int,float)) and isinstance(d,(int,float)) and isinstance(n,(int,float)):
-		if(n==int(n)):
+		if(n==int(n) and n>0):
 			try: 
 				hp=[]
 				hpi=printAP(a,d,n)
