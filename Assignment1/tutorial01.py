@@ -32,3 +32,12 @@ def divide(num1, num2):
 			return 0
 	else: return 0
 	
+def power(num1, num2): #num1 ^ num2
+	if(isinstance(num1,(int,float)) and isinstance(num2,(int,float))):
+		if(num2==int(num2)):
+			result=1
+			for _ in range(int(num2)):
+				result*=num1
+			return result
+		else :return 0
+	else :return 0
