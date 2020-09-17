@@ -55,3 +55,16 @@ def printGP(a, r, n):
 			return gp 
 		else :return 0
 	else :return 0
+
+# Python 3 program to print AP.  arithmetic Progression
+#You cant use the inbuilt python function. Write your own function
+def printAP(a, d, n):
+	if isinstance(a,(int,float)) and isinstance(d,(int,float)) and isinstance(n,(int,float)):
+		if(n==int(n)):
+			ap=[]
+			for i in range(int(n)): ap.append(a+i*d) 
+			ap=[round(x,3) for x in ap]
+			return ap
+		else : return 0
+	else :return 0 
+ 
