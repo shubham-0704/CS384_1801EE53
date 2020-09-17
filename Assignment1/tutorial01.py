@@ -68,3 +68,16 @@ def printAP(a, d, n):
 		else : return 0
 	else :return 0 
  
+ # Python 3 program to print HP.   Harmonic Progression
+#You cant use the inbuilt python function. Write your own function
+def printHP(a, d, n):
+	if isinstance(a,(int,float)) and isinstance(d,(int,float)) and isinstance(n,(int,float)):
+		if(n==int(n)):
+			try: 
+				hp=[]
+				hpi=printAP(a,d,n)
+				hp=[round(1/x,3) for x in hpi]
+				return hp
+			except:return 0
+		else: return 0
+	else :return 0
