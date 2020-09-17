@@ -34,14 +34,22 @@ def divide(num1, num2):
 
 #function to calculate power	
 def power(num1, num2): #num1 ^ num2
-	if(isinstance(num1,(int,float)) and isinstance(num2,(int,float))):
-		if(num2==int(num2)):
-			result=1
-			for _ in range(int(num2)):
-				result*=num1
-			return round(result,3)
-		else :return 0
-	else :return 0
+    if(isinstance(num1,(int,float)) and isinstance(num2,(int,float))):
+        if(num2==int(num2)):
+            if(num1==0):
+                return 0
+            elif num2>=0:
+                result=1
+                for _ in range(int(num2)):
+                    result*=num1
+                return round(result,3)
+            else:
+                result=1
+                for _ in range(int(abs(num2))):
+                    result/=num1
+                return round(result,3)
+        else :return 0
+    else :return 0
 
 # Python 3 program to print GP.  geometric Progression
 #You cant use the inbuilt python function. Write your own function
