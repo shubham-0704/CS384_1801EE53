@@ -7,7 +7,7 @@ def mean(first_list):
     sum=summation(first_list) 
     if sum==0:return 0
     else :
-        return round(sum/len(first_list),3)
+        return round(sum/len(first_list),6)
 
 
 # Function to compute median. You cant use Python functions
@@ -21,7 +21,7 @@ def median(first_list):
             else :
                 n=len(arr)
                 ans=(arr[n//2]+arr[(n-1)//2])/2
-                return round(ans,3)
+                return round(ans,6)
 
 
 # Function to compute Standard deviation. You cant use Python functions
@@ -36,7 +36,7 @@ def standard_deviation(first_list):
         sum_of_sqaure=0
         for i in first_list:
             sum_of_sqaure+=((i-mean_of_list)**2)
-        return round(math.sqrt(sum_of_sqaure/len(first_list)),3)
+        return round(math.sqrt(sum_of_sqaure/len(first_list)),6)
 
 
 # Function to compute variance. You cant use Python functions
@@ -51,7 +51,7 @@ def variance(first_list):
         sum_of_sqaure=0
         for i in first_list:
             sum_of_sqaure+=((i-mean_of_list)**2)
-        return round(sum_of_sqaure/len(first_list),3)
+        return round(sum_of_sqaure/len(first_list),6)
 
 
 # Function to compute RMSE. You cant use Python functions
@@ -66,7 +66,7 @@ def rmse(first_list, second_list):
                 return 0
             sum+=(x-y)**2
 
-        return round(math.sqrt(sum/len(first_list)),3)
+        return round(math.sqrt(sum/len(first_list)),6)
 
 
 # Function to compute mse. You cant use Python functions
@@ -81,7 +81,7 @@ def mse(first_list, second_list):
                 return 0
             sum+=(x-y)**2
 
-        return round((sum/len(first_list)),3)
+        return round((sum/len(first_list)),6)
 
 
 # Function to compute mae. You cant use Python functions
@@ -96,7 +96,7 @@ def mae(first_list, second_list):
                 return 0
             sum+=abs(x-y)
 
-        return round(sum/len(first_list),3)
+        return round(sum/len(first_list),6)
 
 
 # Function to compute NSE. You cant use Python functions
@@ -115,7 +115,7 @@ def nse(first_list, second_list):
             sum_lower+=(x-mean_x)**2
 
         try :
-            return round(1-(sum_upper/sum_lower),3)
+            return round(1-(sum_upper/sum_lower),6)
         except:
             return 0
 
@@ -140,7 +140,7 @@ def pcc(first_list, second_list):
 
         try :
             pcc_value=sum_upper/(math.sqrt(sum_lower_x)*math.sqrt(sum_lower_y))
-            return round(pcc_value,3)
+            return round(pcc_value,6)
         except:
             return 0
 
@@ -159,7 +159,7 @@ def skewness(first_list):
         try :
             for i in first_list:
                 ans+=((i-mean_x)/sd)**3
-            return round(ans/len(first_list),3)
+            return round(ans/len(first_list),6)
         except:
             return 0
     
@@ -195,7 +195,7 @@ def kurtosis(first_list):
         try :
             for i in first_list:
                 sum+=((i-mean_x)/sd)**4
-            return round(sum/len(first_list),3)
+            return round(sum/len(first_list),6)
         except:
             return 0
 
@@ -210,4 +210,4 @@ def summation(first_list):
         summation_value=0
         for i in first_list:
             summation_value+=i
-        return round(summation_value,3)
+        return round(summation_value,6)
