@@ -101,8 +101,22 @@ def mae(first_list, second_list):
 
 # Function to compute NSE. You cant use Python functions
 def nse(first_list, second_list):
-    # nse Logic
-    return nse_value
+    if(len(first_list) != len(second_list)):return 0
+    elif len(first_list)==0:return 0
+    else :
+        sum_upper=0
+        sum_lower=0
+        mean_x=mean(first_list)
+        for x,y in zip(first_list,second_list):
+            if not isinstance(x,(int,float)) or not isinstance(y,(int,float)):
+                return 0
+            sum_upper+=(x-y)**2
+            sum_lower+=(x-mean_x)**2
+
+        try :
+            return round(1-(sum_upper/sum_lower),3)
+        except:
+            return 0
 
 
 # Function to compute Pearson correlation coefficient. You cant use Python functions
