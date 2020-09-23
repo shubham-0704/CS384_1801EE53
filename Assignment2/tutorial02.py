@@ -41,8 +41,17 @@ def standard_deviation(first_list):
 
 # Function to compute variance. You cant use Python functions
 def variance(first_list):
-    # variance Logic
-    return variance_value
+    if len(first_list)==0:return 0
+
+    for i in first_list:
+        if not isinstance(i,(int,float)):
+            return 0
+    else:
+        mean_of_list=mean(first_list)
+        sum_of_sqaure=0
+        for i in first_list:
+            sum_of_sqaure+=((i-mean_of_list)**2)
+        return round(sum_of_sqaure/len(first_list),3)
 
 
 # Function to compute RMSE. You cant use Python functions
