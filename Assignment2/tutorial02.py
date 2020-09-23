@@ -1,4 +1,5 @@
 # All decimal 3 places
+import math
 
 # Function to compute mean
 def mean(first_list):
@@ -25,8 +26,17 @@ def median(first_list):
 
 # Function to compute Standard deviation. You cant use Python functions
 def standard_deviation(first_list):
-    # Standard deviation Logic
-    return standard_deviation_value
+    if len(first_list)==0:return 0
+
+    for i in first_list:
+        if not isinstance(i,(int,float)):
+            return 0
+    else:
+        mean_of_list=mean(first_list)
+        sum_of_sqaure=0
+        for i in first_list:
+            sum_of_sqaure+=((i-mean_of_list)**2)
+        return round(math.sqrt(sum_of_sqaure/len(first_list)),3)
 
 
 # Function to compute variance. You cant use Python functions
