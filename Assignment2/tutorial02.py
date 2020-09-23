@@ -123,7 +123,26 @@ def nse(first_list, second_list):
 # Function to compute Pearson correlation coefficient. You cant use Python functions
 def pcc(first_list, second_list):
     # nse Logic
-    return pcc_value
+    if(len(first_list) != len(second_list)):return 0
+    elif len(first_list)==0:return 0
+    else :
+        sum_upper=0
+        sum_lower_x=0
+        sum_lower_y=0
+        mean_y=mean(second_list)
+        mean_x=mean(first_list)
+        for x,y in zip(first_list,second_list):
+            if not isinstance(x,(int,float)) or not isinstance(y,(int,float)):
+                return 0
+            sum_upper+=(x-mean_x)*(y-mean_y)
+            sum_lower_x+=(x-mean_x)**2
+            sum_lower_y+=(y-mean_y)**2
+
+        try :
+            pcc_value=sum_upper/(math.sqrt(sum_lower_x)*math.sqrt(sum_lower_y))
+            return round(pcc_value,3)
+        except:
+            return 0
 
 
 # Function to compute Skewness. You cant use Python functions
