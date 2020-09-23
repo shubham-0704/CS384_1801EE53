@@ -101,6 +101,7 @@ def mae(first_list, second_list):
 
 # Function to compute NSE. You cant use Python functions
 def nse(first_list, second_list):
+
     if(len(first_list) != len(second_list)):return 0
     elif len(first_list)==0:return 0
     else :
@@ -127,8 +128,21 @@ def pcc(first_list, second_list):
 
 # Function to compute Skewness. You cant use Python functions
 def skewness(first_list):
-    # Skewness Logic
-    return skewness_value
+    if len(first_list)==0:return 0
+
+    for i in first_list:
+        if not isinstance(i,(int,float)):
+            return 0
+    else :
+        mean_x=mean(first_list)
+        sd=standard_deviation(first_list)
+        ans=0
+        try :
+            for i in first_list:
+                ans+=((i-mean_x)/sd)**3
+            return round(ans/len(first_list),3)
+        except:
+            return 0
     
 def sorting(first_list):
     for i in first_list:
