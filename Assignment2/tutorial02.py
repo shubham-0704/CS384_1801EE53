@@ -63,8 +63,21 @@ def skewness(first_list):
     return skewness_value
     
 def sorting(first_list):
-    # Sorting Logic
-    return sorted_list
+    for i in first_list:
+        if not isinstance(i,(int,float)):
+            return 0
+    else:
+        arr=first_list.copy()
+        n = len(arr) 
+        for i in range(n): 
+            swapped = False
+            for j in range(0, n-i-1): 
+                if arr[j] > arr[j+1] : 
+                    arr[j], arr[j+1] = arr[j+1], arr[j] 
+                    swapped = True
+            if swapped == False: 
+                break
+        return arr
 
 
 # Function to compute Kurtosis. You cant use Python functions
