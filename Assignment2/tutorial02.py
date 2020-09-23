@@ -2,8 +2,11 @@
 
 # Function to compute mean
 def mean(first_list):
-    # mean Logic 
-    return mean_value
+    # mean Logic
+    sum=summation(first_list) 
+    if sum==0:return 0
+    else :
+        return round(sum/len(first_list),3)
 
 
 # Function to compute median. You cant use Python functions
