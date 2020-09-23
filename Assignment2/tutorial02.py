@@ -11,8 +11,16 @@ def mean(first_list):
 
 # Function to compute median. You cant use Python functions
 def median(first_list):
-    # median Logic
-    return median_value
+    if len(first_list)==0:return 0
+    else :
+        arr=sorting(first_list)
+        if arr==0:return 0
+        else :
+            if(len(arr)%2==1):return round(arr[len(arr)//2],3)
+            else :
+                n=len(arr)
+                ans=(arr[n//2]+arr[(n-1)//2])/2
+                return round(ans,3)
 
 
 # Function to compute Standard deviation. You cant use Python functions
