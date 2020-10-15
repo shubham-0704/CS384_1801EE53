@@ -67,8 +67,40 @@ def course():
 
 
 def country():
-    # Read csv and process
-    pass
+    path=os.getcwd()
+    # path=path+r"/analytics/country"
+    path=os.path.join(path,"analytics","country")
+    if not os.path.isdir(path):
+        os.makedirs(path)
+    file=open('studentinfo_cs384.csv','r')
+    fieldname=""
+    reader=csv.DictReader(file)
+    fieldname=reader.fieldnames
+    
+    for line in reader:
+        i=line["country"].lower()
+        if len(i)!=0:
+            i=i+".csv"
+            flag=0
+            # if not os.path.isfile(path+r'/%s.csv'%i):flag=1
+            # f=open(path+r'/%s.csv'%i,'a+',newline="")
+
+            if not os.path.isfile(os.path.join(path,i)):flag=1
+            f=open(os.path.join(path,i),'a+',newline="")
+            
+            writer=csv.DictWriter(f,fieldnames=fieldname)
+            if flag:writer.writeheader()
+            writer.writerow(line)
+        else:
+            i="misc"+".csv"
+            flag=0
+
+            if not os.path.isfile(os.path.join(path,i)):flag=1
+            f=open(os.path.join(path,i),'a+',newline="")
+            
+            writer=csv.DictWriter(f,fieldnames=fieldname)
+            if flag:writer.writeheader()
+            writer.writerow(line)
 
 
 def email_domain_extract():
