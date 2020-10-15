@@ -321,5 +321,42 @@ def blood_group():
 
 # Create the new file here and also sort it in this function only.
 def new_file_sort():
-    # Read csv and process
-    pass
+    path=os.getcwd()
+    path=os.path.join(path,"analytics")
+    if not os.path.isdir(path):
+        os.makedirs(path)
+    file=open('studentinfo_cs384.csv','r')
+    fieldname=""
+    reader=csv.DictReader(file)
+    fieldname=reader.fieldnames
+    fieldname_new=fieldname.copy()
+    fieldname_new.pop(1)
+    fieldname_new.insert(1,"first_name")
+    fieldname_new.insert(2,"last_name")
+
+    rows=[]
+
+    for line1 in reader:
+        first_name=line1["full_name"].split()[0]
+        last_name=line1["full_name"].split()[1:]
+        last_name=" ".join(last_name)
+        line1.pop("full_name")
+        line1["first_name"]=first_name
+        line1["last_name"]=last_name
+        flag=0
+        file_name="studentinfo_cs384_names_split.csv"
+        if not  os.path.isfile(os.path.join(path,file_name)):flag=1
+        f=open(os.path.join(path,file_name),'a',newline="")
+        
+
+        writer=csv.DictWriter(f,fieldnames=fieldname_new)
+        if flag: writer.writeheader()
+        writer.writerow(line1)
+        rows.append(line1)
+
+    rows.sort(key=lambda item:item.get("first_name"))
+    file_name="studentinfo_cs384_names_split_sorted_first_name.csv"
+    f=open(os.path.join(path,file_name),'a',newline="")
+    writer=csv.DictWriter(f,fieldnames=fieldname_new)
+    writer.writeheader()
+    writer.writerows(rows)
