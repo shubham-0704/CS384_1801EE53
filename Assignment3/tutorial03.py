@@ -1,6 +1,7 @@
 import csv
 import re
 import os
+import shutil
 
 
 def course():
@@ -363,6 +364,12 @@ def new_file_sort():
 
 
 # driver code
+
+#code to remove previous files
+path=os.getcwd()
+path=os.path.join(path,"analytics")
+if  os.path.isdir(path):
+    shutil.rmtree(path)
 
 course()
 country()
