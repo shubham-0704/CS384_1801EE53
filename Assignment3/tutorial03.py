@@ -172,8 +172,77 @@ def gender():
 
 
 def dob():
-    # Read csv and process
-    pass
+    path=os.getcwd()
+    path=os.path.join(path,"analytics","dob")
+    if not os.path.isdir(path):
+        os.makedirs(path)
+    file=open('studentinfo_cs384.csv','r')
+    fieldname=""
+    reader=csv.DictReader(file)
+    fieldname=reader.fieldnames
+    for line in reader:
+        i=line["dob"]
+        i=i.split("-")[2]
+        if re.fullmatch(r"199[5-9]{1}",i) :
+            i="bday_1995_1999"+".csv"
+            flag=0
+
+            if not os.path.isfile(os.path.join(path,i)):flag=1
+            f=open(os.path.join(path,i),'a+',newline="")
+            
+            writer=csv.DictWriter(f,fieldnames=fieldname)
+            if flag:writer.writeheader()
+            writer.writerow(line)
+        elif re.fullmatch(r"200[0-4]{1}",i) :
+            i="bday_2000_2004"+".csv"
+            flag=0
+
+            if not os.path.isfile(os.path.join(path,i)):flag=1
+            f=open(os.path.join(path,i),'a+',newline="")
+            
+            writer=csv.DictWriter(f,fieldnames=fieldname)
+            if flag:writer.writeheader()
+            writer.writerow(line)
+        elif re.fullmatch(r"200[5-9]{1}",i) :
+            i="bday_2005_2009"+".csv"
+            flag=0
+
+            if not os.path.isfile(os.path.join(path,i)):flag=1
+            f=open(os.path.join(path,i),'a+',newline="")
+            
+            writer=csv.DictWriter(f,fieldnames=fieldname)
+            if flag:writer.writeheader()
+            writer.writerow(line)
+        elif re.fullmatch(r"201[0-4]{1}",i) :
+            i="bday_2010_2014"+".csv"
+            flag=0
+
+            if not os.path.isfile(os.path.join(path,i)):flag=1
+            f=open(os.path.join(path,i),'a+',newline="")
+            
+            writer=csv.DictWriter(f,fieldnames=fieldname)
+            if flag:writer.writeheader()
+            writer.writerow(line)
+        elif re.fullmatch(r"20[12]{1}[056789]{1}",i) :
+            i="bday_2015_2020"+".csv"
+            flag=0
+
+            if not os.path.isfile(os.path.join(path,i)):flag=1
+            f=open(os.path.join(path,i),'a+',newline="")
+            
+            writer=csv.DictWriter(f,fieldnames=fieldname)
+            if flag:writer.writeheader()
+            writer.writerow(line)
+        else:
+            i="misc"+".csv"
+            flag=0
+
+            if not os.path.isfile(os.path.join(path,i)):flag=1
+            f=open(os.path.join(path,i),'a+',newline="")
+            
+            writer=csv.DictWriter(f,fieldnames=fieldname)
+            if flag:writer.writeheader()
+            writer.writerow(line)
 
 
 def state():
