@@ -3,6 +3,18 @@ import re
 import os
 import shutil
 
+def del_create_analytics_folder():
+    #code to remove previous files
+    path=os.getcwd()
+    path=os.path.join(path,"analytics")
+    if  os.path.isdir(path):
+        shutil.rmtree(path)
+    # mkdir the analytics folder (only mkdir)
+    path=os.getcwd()
+    path=os.path.join(path,"analytics")
+    if not os.path.isdir(path):
+        os.makedirs(path)
+
 
 def course():
     path=os.getcwd()
@@ -11,6 +23,7 @@ def course():
     if not os.path.isdir(path):
         os.makedirs(path)
     file=open('studentinfo_cs384.csv','r')
+    # file=open(os.path.join(os.getcwd(),'studentinfo_cs384.csv'),"r")
     fieldname=""
     reader=csv.DictReader(file)
     fieldname=reader.fieldnames
@@ -363,19 +376,3 @@ def new_file_sort():
     writer.writerows(rows)
 
 
-# driver code
-
-#code to remove previous files
-path=os.getcwd()
-path=os.path.join(path,"analytics")
-if  os.path.isdir(path):
-    shutil.rmtree(path)
-
-course()
-country()
-dob()
-email_domain_extract()
-gender()
-state()
-blood_group()
-new_file_sort()
