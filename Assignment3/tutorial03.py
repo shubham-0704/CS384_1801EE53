@@ -246,8 +246,40 @@ def dob():
 
 
 def state():
-    # Read csv and process
-    pass
+    path=os.getcwd()
+    # path=path+r"/analytics/state"
+    path=os.path.join(path,"analytics","state")
+    if not os.path.isdir(path):
+        os.makedirs(path)
+    file=open('studentinfo_cs384.csv','r')
+    fieldname=""
+    reader=csv.DictReader(file)
+    fieldname=reader.fieldnames
+    
+    for line in reader:
+        i=line["state"].lower()
+        if len(i)!=0:
+            i=i+".csv"
+            flag=0
+            # if not os.path.isfile(path+r'/%s.csv'%i):flag=1
+            # f=open(path+r'/%s.csv'%i,'a+',newline="")
+
+            if not os.path.isfile(os.path.join(path,i)):flag=1
+            f=open(os.path.join(path,i),'a+',newline="")
+            
+            writer=csv.DictWriter(f,fieldnames=fieldname)
+            if flag:writer.writeheader()
+            writer.writerow(line)
+        else:
+            i="misc"+".csv"
+            flag=0
+
+            if not os.path.isfile(os.path.join(path,i)):flag=1
+            f=open(os.path.join(path,i),'a+',newline="")
+            
+            writer=csv.DictWriter(f,fieldnames=fieldname)
+            if flag:writer.writeheader()
+            writer.writerow(line)
 
 
 def blood_group():
