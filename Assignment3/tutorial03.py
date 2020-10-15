@@ -13,7 +13,7 @@ def del_create_analytics_folder():
     path=os.getcwd()
     path=os.path.join(path,"analytics")
     if not os.path.isdir(path):
-        os.makedirs(path)
+        os.mkdir(path)
 
 
 def course():
