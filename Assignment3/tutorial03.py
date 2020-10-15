@@ -20,12 +20,14 @@ def email_domain_extract():
 
 def gender():
     path=os.getcwd()
-    path=path+r"/analytics/gender"
+    # path=path+r"/analytics/gender"
+    path=os.path.join(path,"analytics","gender")
     if not os.path.isdir(path):
         os.makedirs(path)
     file=open('studentinfo_cs384.csv','r')
-    m=open(path+r"/male.csv",'w',newline="")
-    f=open(path+r"/female.csv",'w',newline="")
+    m=open(os.path.join(path,"male.csv"),'w',newline="")
+    # f=open(path+r"/female.csv",'w',newline="")
+    f=open(os.path.join(path,"female.csv"),'w',newline="")
     with file:        
             reader=csv.DictReader(file)
             fieldname=reader.fieldnames
