@@ -360,3 +360,15 @@ def new_file_sort():
     writer=csv.DictWriter(f,fieldnames=fieldname_new)
     writer.writeheader()
     writer.writerows(rows)
+
+
+# driver code
+
+course()
+country()
+dob()
+email_domain_extract()
+gender()
+state()
+blood_group()
+new_file_sort()
