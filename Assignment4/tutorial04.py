@@ -44,3 +44,38 @@ for num in range(len(roll_list)):
         df1=df1.append([[df['sub_code'][i],df['total_credits'][i],df['sub_type'][i],df['credit_obtained'][i],df['sem'][i]]],ignore_index=True)
 
     df1.to_csv(f'grades/{roll_list[num]}_individual.csv',index=False,header=False)
+
+    #for overall file
+
+    df2=pd.DataFrame()
+    df2=df2.append([[f'Roll: {roll_list[num]}']],ignore_index=True)
+    df2=df2.append([['Semester','Semester Credits','Semester Credits Cleared','SPI','Total Credits','Total Credits Cleared','CPI']],ignore_index=True)
+    sem_num=df['sem'].unique()
+    sorted(sem_num)
+    tot_cred=0
+    tot_clear=0
+    cpi=0
+    for num1 in range(len(sem_num)):
+        df_temp=df[df['sem']==sem_num[num1]]
+        sem_cred=df_temp['total_credits'].sum()
+        sem_cleared=0
+        spi=0
+        for i1 in df_temp.index:
+            # if df_temp.loc[i1].isnull().sum()>0:
+            #     df_misc.append(df_temp.iloc[i1])
+            if df_temp.loc[i1].isnull().sum()>0:
+                df_misc=df_misc.append(df_temp.loc[i1])
+            elif grade_equivalent[df_temp['credit_obtained'][i1]] !=0:
+                sem_cleared+=df_temp['total_credits'][i1]
+                spi+=grade_equivalent[df_temp['credit_obtained'][i1]]*df_temp['total_credits'][i1]
+
+        spi/=sem_cred 
+        cpi=(cpi*tot_cred+spi*sem_cred)/(tot_cred+sem_cred)
+        tot_cred+=sem_cred
+        tot_clear+=sem_cleared
+        
+        df2=df2.append([[sem_num[num1],sem_cred,sem_cleared,round(spi,2),tot_cred,tot_clear,round(cpi,2)]],ignore_index=True)
+
+        df2.to_csv(f'grades/{roll_list[num]}_overall.csv',index=False,header=False)
+
+df_misc.to_csv(f'grades/misc.csv',index=False,columns=["roll","sem","sub_code","total_credits","credit_obtained","sub_type"])
