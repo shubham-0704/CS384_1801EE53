@@ -28,3 +28,19 @@ data=data[['roll','sem','sub_code','total_credits','credit_obtained','sub_type']
 roll_list=data["roll"].unique()
 data=data.groupby("roll")
 df_misc=pd.DataFrame()
+
+for num in range(len(roll_list)):
+    df=data.get_group(roll_list[num])
+
+    #for individual file 
+    df1=pd.DataFrame()
+    df1=df1.append([[f'Roll: {roll_list[num]}']])
+    df1=df1.append([["Semester Wise Details"]])
+    df1=df1.append([['Subject','Credits','Type','Grade','Sem']])
+
+    df[['sub_code','total_credits','sub_type','credit_obtained','sem']]
+
+    for i in df.index:
+        df1=df1.append([[df['sub_code'][i],df['total_credits'][i],df['sub_type'][i],df['credit_obtained'][i],df['sem'][i]]],ignore_index=True)
+
+    df1.to_csv(f'grades/{roll_list[num]}_individual.csv',index=False,header=False)
