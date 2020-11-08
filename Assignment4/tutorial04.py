@@ -76,6 +76,6 @@ for num in range(len(roll_list)):
         
         df2=df2.append([[sem_num[num1],sem_cred,sem_cleared,round(spi,2),tot_cred,tot_clear,round(cpi,2)]],ignore_index=True)
 
-        df2.to_csv(f'grades/{roll_list[num]}_overall.csv',index=False,header=False)
+    df2.to_csv(f'grades/{roll_list[num]}_overall.csv',index=False,header=False)
 
 df_misc.to_csv(f'grades/misc.csv',index=False,columns=["roll","sem","sub_code","total_credits","credit_obtained","sub_type"])
