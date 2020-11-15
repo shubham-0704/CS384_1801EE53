@@ -63,7 +63,26 @@ def rename_Sherlock(folder_name):
 
 def rename_Suits(folder_name):
     # rename Logic 
-    pass
+    path=os.path.join(os.getcwd(),"subtitles",folder_name)
+    title=input("Main Title of the Web Series: ")
+    sea_pad=int(input("Season Number Padding: "))
+    epi_pad=int(input("Episode Number Padding: "))
+
+    for name in os.listdir(path):
+
+            src=os.path.join(path,name)
+            name=name.split(".")
+            file_type=name[-1]
+            name=name[0].split("-")
+            ep_name='-'.join(name[2:])
+            name=name[1]
+            sea_num,ep_num=[str(int(x)) for x in name.split("x")]
+            f_name=title+" - "+"Season "+ sea_num.zfill(sea_pad)+" Episode "+ep_num.zfill(epi_pad)+" - "+ep_name+"."+file_type
+            des=os.path.join(path,f_name)
+            if not os.path.isfile(des):
+                os.rename(src,des)
+            else :
+                os.remove(src)
     
 
 def rename_How_I_Met_Your_Mother(folder_name):
