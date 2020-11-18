@@ -113,3 +113,15 @@ def rename_How_I_Met_Your_Mother(folder_name):
         else :
             os.remove(src)
     
+if __name__=="__main__":
+    series=input("Main Title of the Web Series to rename: ")
+    if series=="Game of Thrones":
+        rename_Game_of_Thrones('Game of Thrones')
+    elif series=="Sherlock":
+        rename_Sherlock('Sherlock')
+    elif series=="Suits":
+        rename_Suits('Suits')
+    elif series=="FIR":
+        rename_FIR("FIR")
+    elif series=="How I Met Your Mother":
+        rename_How_I_Met_Your_Mother('How I Met Your Mother')
