@@ -77,7 +77,7 @@ def group_allocation(filename, number_of_groups):
         df_gp.to_csv(f"groups/{grp_name}",index=False,columns=["Roll","Name","Email"]) 
 
 
-        
+
 filename = "Btech_2020_master_data.csv"
 number_of_groups = 12 
 group_allocation(filename, number_of_groups)
