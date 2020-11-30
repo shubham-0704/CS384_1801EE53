@@ -64,6 +64,20 @@ def group_allocation(filename, number_of_groups):
 
     df=df.append(list_grp)
     df.to_csv(f"groups/stats_grouping.csv",index=False)
+    bran_str = dict.fromkeys(list(df_str["BRANCH_CODE"]),0)
+    # print(df)
+    for i in range(nog):
+        df_gp=pd.DataFrame()
+        grp_name=list_grp[i]["group"]
+        for nm in list(df_str["BRANCH_CODE"]):
+            n=list_grp[i][nm]
+            df_temp=data.get_group(nm)
+            df_gp=df_gp.append(df_temp.iloc[bran_str[nm]:bran_str[nm]+n,:])
+            bran_str[nm]+=n
+        df_gp.to_csv(f"groups/{grp_name}",index=False,columns=["Roll","Name","Email"]) 
+
+
+        
 filename = "Btech_2020_master_data.csv"
 number_of_groups = 12 
 group_allocation(filename, number_of_groups)
