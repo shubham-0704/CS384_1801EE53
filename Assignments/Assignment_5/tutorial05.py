@@ -4,7 +4,8 @@ import re
 def rename_FIR(folder_name):
     #rename Logic 
     path=os.path.join(os.getcwd(),"subtitles",folder_name)
-    title=input("Main Title of the Web Series: ")
+    # title=input("Main Title of the Web Series: ")
+    title="FIR"
     epi_pad=int(input("Episode Number Padding: "))
     l=list()
     s=set()
@@ -23,7 +24,8 @@ def rename_FIR(folder_name):
 def rename_Game_of_Thrones(folder_name):
     # rename Logic 
     path=os.path.join(os.getcwd(),"subtitles",folder_name)
-    title=input("Main Title of the Web Series: ")
+    # title=input("Main Title of the Web Series: ")
+    title="Game of Thrones"
     sea_pad=int(input("Season Number Padding: "))
     epi_pad=int(input("Episode Number Padding: "))
 
@@ -43,7 +45,8 @@ def rename_Game_of_Thrones(folder_name):
 def rename_Sherlock(folder_name):
     # rename Logic 
     path=os.path.join(os.getcwd(),"subtitles",folder_name)
-    title=input("Main Title of the Web Series: ")
+    # title=input("Main Title of the Web Series: ")
+    title='Sherlock'
     sea_pad=int(input("Season Number Padding: "))
     epi_pad=int(input("Episode Number Padding: "))
 
@@ -64,7 +67,8 @@ def rename_Sherlock(folder_name):
 def rename_Suits(folder_name):
     # rename Logic 
     path=os.path.join(os.getcwd(),"subtitles",folder_name)
-    title=input("Main Title of the Web Series: ")
+    # title=input("Main Title of the Web Series: ")
+    title='Suits'
     sea_pad=int(input("Season Number Padding: "))
     epi_pad=int(input("Episode Number Padding: "))
 
@@ -88,7 +92,8 @@ def rename_Suits(folder_name):
 def rename_How_I_Met_Your_Mother(folder_name):
     # rename Logic 
     path=os.path.join(os.getcwd(),"subtitles",folder_name)
-    title=input("Main Title of the Web Series: ")
+    # title=input("Main Title of the Web Series: ")
+    title='How I Met Your Mother'
     sea_pad=int(input("Season Number Padding: "))
     epi_pad=int(input("Episode Number Padding: "))
 
@@ -113,15 +118,15 @@ def rename_How_I_Met_Your_Mother(folder_name):
         else :
             os.remove(src)
     
-if __name__=="__main__":
-    series=input("Main Title of the Web Series to rename: ")
-    if series=="Game of Thrones":
-        rename_Game_of_Thrones('Game of Thrones')
-    elif series=="Sherlock":
-        rename_Sherlock('Sherlock')
-    elif series=="Suits":
-        rename_Suits('Suits')
-    elif series=="FIR":
-        rename_FIR("FIR")
-    elif series=="How I Met Your Mother":
-        rename_How_I_Met_Your_Mother('How I Met Your Mother')
+
+series=input("Main Title of the Web Series to rename: ")
+if series=="Game of Thrones":
+    rename_Game_of_Thrones('Game of Thrones')
+elif series=="Sherlock":
+    rename_Sherlock('Sherlock')
+elif series=="Suits":
+    rename_Suits('Suits')
+elif series=="FIR":
+    rename_FIR("FIR")
+elif series=="How I Met Your Mother":
+    rename_How_I_Met_Your_Mother('How I Met Your Mother')
