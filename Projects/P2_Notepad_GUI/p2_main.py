@@ -6,7 +6,69 @@ import os.path,time
 from tkinter.filedialog import askopenfilename ,asksaveasfilename
 
 
+def new_file():
+    global file
+    root.title("Untitled - Notepad")
+    file=None
+    text.delete("1.0",END)
 
+def open_file():
+    global file
+    file = askopenfilename(defaultextension=".txt",
+                           filetypes=[("All Files", "*.*"),
+                                     ("Text Documents", "*.txt")])
+    if file == "":
+        file = None
+    else:
+        root.title(os.path.basename(file) + " - Notepad")
+        text.delete(1.0, END)
+        f = open(file, "r")
+        text.insert(1.0, f.read())
+        f.close()
+
+def save_file():
+    global file
+    if file == None:
+        file = asksaveasfilename(initialfile = 'Untitled.txt', defaultextension=".txt",
+                           filetypes=[("All Files", "*.*"),
+                                     ("Text Documents", "*.txt")])
+        if file =="":
+            file = None
+
+        else:
+            #Save as a new file
+            f = open(file, "w")
+            f.write(text.get(1.0, END))
+            f.close()
+
+            root.title(os.path.basename(file) + " - Notepad")
+            # print("File Saved")
+    else:
+        # Save the file
+        f = open(file, "w")
+        f.write(text.get(1.0, END))
+        f.close()
+
+def exit_file():
+    root.destroy()
+
+def saveas_file():
+    global file
+
+    file = asksaveasfilename(initialfile = 'Untitled.txt', defaultextension=".txt",
+                        filetypes=[("All Files", "*.*"),
+                                    ("Text Documents", "*.txt")])
+    if file =="":
+        pass
+
+    else:
+        #Save as a new file
+        f = open(file, "w")
+        f.write(text.get(1.0, END))
+        f.close()
+
+        root.title(os.path.basename(file) + " - Notepad")
+        # print("File Saved")
 
 
 
@@ -74,3 +136,13 @@ if __name__ == "__main__":
     menu.add_cascade(label="Help",menu=ab)
 
     root.config(menu=menu)
+
+    # scroll bar code 
+    scroll=Scrollbar(text)
+    scroll.pack(side=RIGHT,fill=Y)
+    scroll.config(command=text.yview)
+    text.config(yscrollcommand=scroll.set)
+    text.tag_bind('found','<Button-1>',lambda x: text.tag_remove('found', '1.0', END)) 
+    text.bind("<Button-1>",lambda x: text.tag_remove('found', '1.0', END))
+
+    root.mainloop()
