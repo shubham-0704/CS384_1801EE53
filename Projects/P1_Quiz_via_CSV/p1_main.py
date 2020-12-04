@@ -9,8 +9,6 @@ import pandas as pd
 import shutil
 import re
 
-
-
 pd.options.mode.chained_assignment = None
 
 con=sqlite3.connect("project1_quiz_cs384.db")
@@ -34,8 +32,6 @@ for root, dirs, files in os.walk(path):
         if file.endswith(".csv"):
              result.append( file)
 
-
-
 def next():
     he.pack_forget()
     a11.pack_forget()
@@ -57,9 +53,6 @@ def next():
     b1.pack(padx=50,ipadx=10,ipady=7)
     logbtn.pack(pady=10)
     regbtn.pack(pady=10,padx=10)
-
-
-
 
 def sel_quiz(name,roll):
     print(roll,type(roll))
@@ -116,9 +109,6 @@ def sel_quiz(name,roll):
                 option4.place(relx=0.7,rely=0.6,anchor="center") 
                 next_q.place(relx=0.5,rely=0.8,anchor="center")
                 submit_b.place(relx=0.8,rely=0.8,anchor="center")
-                # number.place_forget()
-                # for k in question_nos:
-                #     k.place_forget()
                 ask.place_forget()
                 ok_button.place_forget()
                 q-=1
@@ -154,7 +144,7 @@ def sel_quiz(name,roll):
             o.config(bg="#00ff85") 
             pass
 
-        # attempted=[]
+        # score calculation
         def score_calc():
             score=0
             correct_ch=0
@@ -215,11 +205,6 @@ def sel_quiz(name,roll):
         shortcut_label=Label(root,text="Press 'Ctrl' + 'Alt' + 'g' to go to a question | Press 'Ctrl' + 'Alt' + 'u' to show unattempted question(s)\nPress 'Ctrl' + 'Alt' + 'f' to submit quiz | Press 'Ctrl' + 'Alt' + 'e' to export quiz wise marks to csv",font=("Nunito","8"))
         shortcut_label.place(relx=0.5,rely=0.9,anchor="center")
         export_label.place_forget()
-        # unattempted_short=Label(root,text="Press 'Ctrl' + 'Alt' + 'u'\nto show unattempted question(s)")
-        # submit_short=Label(root,text="Press 'Ctrl' + 'Alt' + 'f'\nto submit quiz")
-        # exportdata_short=Label(root,text="Press 'Ctrl' + 'Alt' + 'e'\nto export your quiz marks to csv")
-        
-        
         
         question_nos=[]
         for i in range(len(df.index)):
@@ -228,6 +213,8 @@ def sel_quiz(name,roll):
         
         ask=Label(root,text=f"Which question would you like to go to? \n Any number between 1 and {len(df.index)}")
         ok_button=Button(root,text="OK",bg="#90ee90")
+        
+        # Takes us to a question
         def goto(event):
             for i in top_labels:
                 i.place_forget()
@@ -242,8 +229,8 @@ def sel_quiz(name,roll):
             number=Entry(root,width="30",bg="white")
             number.place(relx=0.5,rely=0.5,anchor="center")
             number.bind("<Return>",lambda no : goto_handler(number))
-            # goto_handler(number)
             
+        # goto_handler
         def goto_handler(number):
             list_of_questions=[i+1 for i in range(len(df.index))]
             entry_number=number.get()
@@ -262,21 +249,18 @@ def sel_quiz(name,roll):
                         next_question(0,0)
                 else:
                     next_question(0,0)
-           
-                
-                
-        # goto binding
-        if len(df.index)<30:   
-            root.bind('<Control_L><Alt_L><g>',goto)
-            root.bind('<Control_L><Alt_L><G>',goto)
-            root.bind('<Control_L><Alt_R><g>',goto)
-            root.bind('<Control_L><Alt_R><G>',goto)
-            root.bind('<Control_R><Alt_L><g>',goto)
-            root.bind('<Control_R><Alt_L><G>',goto)
-            root.bind('<Control_R><Alt_R><g>',goto)
-            root.bind('<Control_R><Alt_R><G>',goto)
+                  
+        # goto binding  
+        root.bind('<Control_L><Alt_L><g>',goto)
+        root.bind('<Control_L><Alt_L><G>',goto)
+        root.bind('<Control_L><Alt_R><g>',goto)
+        root.bind('<Control_L><Alt_R><G>',goto)
+        root.bind('<Control_R><Alt_L><g>',goto)
+        root.bind('<Control_R><Alt_L><G>',goto)
+        root.bind('<Control_R><Alt_R><g>',goto)
+        root.bind('<Control_R><Alt_R><G>',goto)
         
-        # unattempted_label=Label(root,text=f"Unattempted questions :\n {unattempted}")  
+        # unattempted_questions
         def unattempted_questions(event):
             unattempted=[i+1 for i in range(len(df.index))]
             attempted=[]
@@ -363,6 +347,7 @@ def sel_quiz(name,roll):
         root.bind('<Control_R><Alt_L><F>',conf)
         
         def export_response():
+            # global df
             path=os.getcwd()
             path=os.path.join(path,"individual_responses")
             if not os.path.isdir(path):
@@ -377,10 +362,14 @@ def sel_quiz(name,roll):
             df['Legend']=None
             for i in ans_dict:
                 df['Marked Choice'].loc[i]=ans_dict[i]
-            for i in range(5):
-                df['Total'].loc[i]=total[i]
-                df['Legend'].loc[i]=legend[i]
-            df.to_csv(f'individual_responses/{quiz[:-4]}_{roll}.csv',index=False)
+            t={"Total":total,"Legend":legend}
+            df1=pd.DataFrame(t)
+            df3=pd.concat([df,df1],ignore_index="True",axis=1)
+            df3.to_csv(f'individual_responses/{quiz[:-4]}_{roll}.csv',index=False)
+           
+        
+
+
 
 def login():
     user=a1.get(),
@@ -432,8 +421,6 @@ def login1():
 
     sel_quiz(name,roll)
 
-
-
 def hash_password(entry):
     password=entry.get()
     ascii_string=''
@@ -443,6 +430,8 @@ def hash_password(entry):
     for i in range(len(ascii_string)):
         hex_string+=str(hex(int(ascii_string[i])))
     return hex_string
+
+
     
 def reg():
     head.pack_forget()
@@ -487,6 +476,9 @@ def reg():
 
     regbtn1 = tk.Button(root,text="login",command = next,background="red",font=" 18 ",padx=30,pady=5,)
     regbtn1.pack(pady=10,padx=10)
+
+    
+
 
 # main geometry  
 root=tk.Tk()
@@ -550,3 +542,4 @@ if __name__=="__main__":
 
     root.mainloop()
     con.close()
+    
