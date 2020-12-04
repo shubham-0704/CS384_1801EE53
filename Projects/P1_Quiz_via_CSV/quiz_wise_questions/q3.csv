@@ -1,0 +1,11 @@
+ques_no,question,option1,option2,option3,option4,correct_option,marks_correct_ans,marks_wrong_ans,compulsory,time=10m
+1,What is the capital of U.S.A,Mumbai,Chennai,None of these,Kolkata,3,5,-1,n,
+2,4*3=,4,12,9,8,2,4,-1,y,
+3,which is Programming language,Python,Patna,Amhara,London,1,8,-2,n,
+4,extension of python file?,.py,.p,.cpp,.c,1,5,-4,y,
+5,2*3,6,5,4,3,1,5,-1,y,
+6,3*8-1=,11,32,23,24,3,6,-2,n,
+7, used in Python to make a single line comment,/,//,#,!,3,6,-1,n,
+8,Which of the following is not a keyword in Python language?,val,raise,try,with,1,4,-8,y,
+9,Red ==Blue,TRUE,Flase,None,insufficent information,2,4,-2,n,
+10,Moon hides sun,Noon,Night,Eclipse,Shadow,3,5,-1,n,
