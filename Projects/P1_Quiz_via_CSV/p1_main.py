@@ -61,9 +61,18 @@ def sel_quiz(name,roll):
     heading=Label(root,text="Which quiz would you like to take??",font=" 25 ",padx=10,pady=10)
     heading.place(relx=0.5,rely=0.2,anchor="center")
     empty_l=[]
+    point=0
+    y_co=0.4
+    x_co=0.2
     for i in range(len(result)):
-        button = Button(root,  height=2, width=8,bd=4,text=result[i],command=lambda i=i: read_c(result[i]))
-        button.place(relx=0.5,rely=0.4+float(i+1)/10,anchor="center")
+        button = Button(root,  height=2, width=10,bd=4,text=result[i][:-4],command=lambda i=i: read_c(result[i]))
+        button.place(relx=x_co,rely=y_co,anchor="center")
+        point+=3
+        x_co=0.2+float(point)/10
+        if x_co>0.8:
+            y_co+=0.1
+            point=0
+            x_co=0.2
         empty_l.append(button)
     # print(result)
  
@@ -184,13 +193,13 @@ def sel_quiz(name,roll):
         top_labels=[question,correct,negative,comp]
 
         # option button
-        option1=Button(root,text="{}".format(df['option1'].loc[0]),command=lambda:choose(option1,1,0),font=" 9 ",bd=3)
+        option1=Button(root,text="{}".format(df['option1'].loc[0]),command=lambda:choose(option1,1,0),font=" 9 ",bd=3,bg="white")
         option1.place(relx=0.3,rely=0.5,anchor="center")  
-        option2=Button(root,text="{}".format(df['option2'].loc[0]),command=lambda:choose(option2,2,0),font=" 9 ",bd=3)
+        option2=Button(root,text="{}".format(df['option2'].loc[0]),command=lambda:choose(option2,2,0),font=" 9 ",bd=3,bg="white")
         option2.place(relx=0.7,rely=0.5,anchor="center")  
-        option3=Button(root,text="{}".format(df['option3'].loc[0]),command=lambda:choose(option3,3,0),font=" 9 ",bd=3)
+        option3=Button(root,text="{}".format(df['option3'].loc[0]),command=lambda:choose(option3,3,0),font=" 9 ",bd=3,bg="white")
         option3.place(relx=0.3,rely=0.6,anchor="center")  
-        option4=Button(root,text="{}".format(df['option4'].loc[0]),command=lambda:choose(option4,4,0),font=" 9 ",bd=3)
+        option4=Button(root,text="{}".format(df['option4'].loc[0]),command=lambda:choose(option4,4,0),font=" 9 ",bd=3,bg="white")
         option4.place(relx=0.7,rely=0.6,anchor="center")  
         
         list_b=[option1,option2,option3,option4]
@@ -360,6 +369,7 @@ def sel_quiz(name,roll):
             df['Marked Choice']=None
             df['Total']=None
             df['Legend']=None
+           
             for i in ans_dict:
                 df['Marked Choice'].loc[i]=ans_dict[i]
             t={"Total":total,"Legend":legend}
