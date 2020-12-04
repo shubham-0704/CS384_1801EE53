@@ -36,6 +36,81 @@ for root, dirs, files in os.walk(path):
 
 
 
+def next():
+    he.pack_forget()
+    a11.pack_forget()
+    a12.pack_forget()
+    b11.pack_forget()
+    b12.pack_forget()
+    c11.pack_forget()
+    c12.pack_forget()
+    d11.pack_forget()
+    d12.pack_forget()
+    regbtn1.pack_forget()
+    logbtn1.pack_forget()
+
+    head.pack()
+    head2.pack()
+    a.pack(fill='x')
+    a1.pack(fill='x',padx=50,ipadx=10,ipady=7)
+    b.pack(fill='x',pady=(30,0))
+    b1.pack(padx=50,ipadx=10,ipady=7)
+    logbtn.pack(pady=10)
+    regbtn.pack(pady=10,padx=10)
+
+
+def login():
+    user=a1.get(),
+    password=hash_password(b1)
+    c.execute("SELECT * FROM project1_registration WHERE roll=(?)",(user))
+
+    if len(c.fetchall())==0:
+       msg.showwarning(title="No data found", message="please register")
+    else :
+        c.execute("SELECT * FROM project1_registration WHERE roll=(?)",(user))
+        l=list(c.fetchone())
+        if l[2]==password:
+            print("succes login")
+            head.pack_forget()
+            head2.pack_forget()
+            a.pack_forget()
+            a1.pack_forget()
+            b.pack_forget()
+            b1.pack_forget()
+            regbtn.pack_forget()
+            logbtn.pack_forget()
+            sel_quiz(l[0],user[0])
+
+        else :
+            msg.showwarning(title="Invalid", message="please use valid password and username")
+
+
+
+
+def login1():
+    name=a12.get()
+    roll=b12.get()
+    password=hash_password(c12)
+    what_num=d12.get()
+    c.execute("INSERT INTO project1_registration VALUES (?,?,?,?)",(name,roll,password,what_num))
+    con.commit()
+    
+    he.pack_forget()
+    a11.pack_forget()
+    a12.pack_forget()
+    b11.pack_forget()
+    b12.pack_forget()
+    c11.pack_forget()
+    c12.pack_forget()
+    d11.pack_forget()
+    d12.pack_forget()
+    regbtn1.pack_forget()
+    logbtn1.pack_forget()
+
+    sel_quiz(name,roll)
+
+
+
 def hash_password(entry):
     password=entry.get()
     ascii_string=''
