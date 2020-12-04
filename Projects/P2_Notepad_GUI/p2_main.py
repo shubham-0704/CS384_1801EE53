@@ -71,8 +71,108 @@ def saveas_file():
         # print("File Saved")
 
 
+def cut():
+    text.event_generate(("<<Cut>>"))
+
+def copy():
+    text.event_generate(("<<Copy>>"))
+
+def paste():
+    text.event_generate(("<<Paste>>"))
+
+def find():
+    word=askstring("Word to find", "Enter the Word" )
+    # s=text.search(word,"1.0",END)
+    s=word
+    # print(s)
+      
+    text.tag_remove('found', '1.0', END)  
+    if s: 
+        idx = '1.0'
+        while 1: 
+            idx = text.search(s, idx, nocase=1,  
+                              stopindex=END)  
+            if not idx: break
+            lastidx = '%s+%dc' % (idx, len(s))  
+            text.tag_add('found', idx, lastidx)  
+            idx = lastidx 
+        text.tag_config('found', foreground='red')
 
 
+
+def find_r():
+    window=Tk()
+    window.geometry("300x150")
+    global fe,fe1
+    def f_r():
+        # print(fe.get(),fe1.get())
+        text.tag_remove('found', '1.0', END)  
+      
+        s = fe.get() 
+        r = fe1.get() 
+      
+        if (s and r):  
+            idx = '1.0'
+            while 1:  
+                # searches for desried string from index 1  
+                idx = text.search(s, idx, nocase = 1,  
+                                stopindex = END) 
+                print(idx) 
+                if not idx: break
+                
+                # last index sum of current index and  
+                # length of text  
+                lastidx = '% s+% dc' % (idx, len(s)) 
+    
+                text.delete(idx, lastidx) 
+                text.insert(idx, r) 
+    
+                lastidx = '% s+% dc' % (idx, len(r)) 
+                
+                # overwrite 'Found' at idx  
+                text.tag_add('found', idx, lastidx)  
+                idx = lastidx  
+    
+            # mark located string as red 
+            text.tag_config('found', foreground ='red', background = '#add8e6')
+            window.destroy() 
+
+        
+    f=Label(window,text="Find :").place(relx=.1,rely=.1)
+    fe=Entry(window,bd=1,bg="#CFDAD8")
+    fe.place(relx=.3,rely=.1)
+    f1=Label(window,text="Replace :").place(relx=.1,rely=.4)
+    fe1=Entry(window,bd=1,bg="#CFDAD8")
+    fe1.place(relx=.3,rely=.4)
+    btn=Button(window,text="Replace",bd=3,bg="#add8e6",command=f_r)
+    btn.place(relx=.4,rely=.7)
+    window.mainloop()
+
+def word_c():
+    t=text.get("1.0",'end')
+    t=t.split()
+    t=len(t)
+    showinfo(title="word count", message=f"{t} words ")
+def char_c():
+    t=text.get("1.0",'end')
+    t=t.split()
+    t="".join(t)
+    t=len(t)
+    showinfo(title="Characters count", message=f"{t} characters ")
+
+def c_time():
+    # print("Created: %s" % time.ctime(os.path.getctime(file)))
+    if file==None or len(file)==0:
+        showerror(title="Not availabe",message="You are working with Untracked file")
+    else :
+        showinfo(title="Created Time", message=f"Created : {time.ctime(os.path.getmtime(file))} ")
+
+def m_time():
+    # print("Last modified: %s" % time.ctime(os.path.getmtime(file)))
+    if file==None or len(file)==0:
+        showerror(title="Not availabe",message="You are working with Untracked file")
+    else:
+        showinfo(title="Modified Time", message=f"Last modified : {time.ctime(os.path.getmtime(file))} ")
 
 
 
