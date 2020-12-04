@@ -11,9 +11,40 @@ import re
 
 
 
+pd.options.mode.chained_assignment = None
+
+con=sqlite3.connect("project1_quiz_cs384.db")
+c=con.cursor()
+c.execute("""CREATE TABLE IF NOT EXISTS project1_registration (
+    name TEXT NOT NULL,
+    roll TEXT NOT NULL,
+    password TEXT NOT NULL,
+    whatsappnumber INTEGER
+    )""")
+c.execute("""CREATE TABLE IF NOT EXISTS project1_marks (
+    roll TEXT NOT NULL,
+    quiz_num TEXT,
+    total_marks INTEGER
+    )""")
+
+result=[]
+path=os.path.join(os.getcwd(),"quiz_wise_questions")
+for root, dirs, files in os.walk(path):
+    for file in files:
+        if file.endswith(".csv"):
+             result.append( file)
 
 
 
+def hash_password(entry):
+    password=entry.get()
+    ascii_string=''
+    for i in range(len(password)):
+        ascii_string+=str(ord(password[i]))
+    hex_string=''
+    for i in range(len(ascii_string)):
+        hex_string+=str(hex(int(ascii_string[i])))
+    return hex_string
     
 def reg():
     head.pack_forget()
