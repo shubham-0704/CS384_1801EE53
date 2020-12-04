@@ -5,6 +5,26 @@ import os
 import os.path,time
 from tkinter.filedialog import askopenfilename ,asksaveasfilename
 
+def font1():
+    text.config(font="FALSE 6")
+def font2():
+    text.config(font="FALSE 8")
+def font3():
+    text.config(font="FALSE 10")
+def font4():
+    text.config(font="FALSE 12")
+def font5():
+    text.config(font="FALSE 14")
+def font6():
+    text.config(font="FALSE 16")
+def font7():
+    text.config(font="FALSE 18")
+def font8():
+    text.config(font="FALSE 20")
+def font9():
+    text.config(font="FALSE 22")
+def font10():
+    text.config(font="FALSE 24")
 
 def new_file():
     global file
