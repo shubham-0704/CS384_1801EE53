@@ -194,7 +194,16 @@ def m_time():
     else:
         showinfo(title="Modified Time", message=f"Last modified : {time.ctime(os.path.getmtime(file))} ")
 
+def about():
+    showinfo(title="About",message="Notepad version 1.0.0")
 
+
+def light():
+    text.config(bg="white",foreground="black")
+
+
+def dark():
+    text.configure(fg="white",background="#444444")
 
 if __name__ == "__main__":
     root=Tk()
