@@ -14,6 +14,50 @@ import re
 
 
 
+    
+def reg():
+    head.pack_forget()
+    head2.pack_forget()
+    a.pack_forget()
+    a1.pack_forget()
+    b.pack_forget()
+    b1.pack_forget()
+    regbtn.pack_forget()
+    logbtn.pack_forget()
+    global he,a11,a12,b11,b12,c11,c12,d11,d12,logbtn1,regbtn1
+
+    he=tk.Label(root, text="Registration", font="comicsansms 30 bold",fg="blue", pady=15)
+    he.pack()
+
+    a11 = tk.Label(root ,text = "Name",font=" 20 ",padx=(100))
+    a11.pack(fill='x')
+
+    a12 = tk.Entry(root,width=400,bd=3,bg="#CFDAD8")
+    a12.pack(fill='x',padx=50,ipadx=10,ipady=7)
+
+    b11 = tk.Label(root ,text = " Roll",font=" 20 ",padx=(100))
+    b11.pack(fill='x',pady=(30,0))
+
+    b12 = tk.Entry(root,width=400,bd=3,bg="#CFDAD8")
+    b12.pack(padx=50,ipadx=10,ipady=7)
+
+    c11 = tk.Label(root ,text = " Password",font=" 20 ",padx=(100))
+    c11.pack(fill='x',pady=(30,0))
+
+    c12 = tk.Entry(root,width=400,bd=3,bg="#CFDAD8")
+    c12.pack(padx=50,ipadx=10,ipady=7)
+
+    d11 = tk.Label(root ,text = " Whatsapp Number",font=" 20 ",padx=(100))
+    d11.pack(fill='x',pady=(30,0))
+
+    d12 = tk.Entry(root,width=400,bd=3,bg="#CFDAD8")
+    d12.pack(padx=50,ipadx=10,ipady=7)
+
+    logbtn1 = tk.Button(root,text="Register and login",command = login1,background="green",font=" 18 ",padx=20,pady=5,)
+    logbtn1.pack(pady=10)
+
+    regbtn1 = tk.Button(root,text="login",command = next,background="red",font=" 18 ",padx=30,pady=5,)
+    regbtn1.pack(pady=10,padx=10)
 
 # main geometry  
 root=tk.Tk()
