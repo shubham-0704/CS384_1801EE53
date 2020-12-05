@@ -119,14 +119,60 @@ def rename_How_I_Met_Your_Mother(folder_name):
             os.remove(src)
     
 
-series=input("Main Title of the Web Series to rename: ")
-if series=="Game of Thrones":
-    rename_Game_of_Thrones('Game of Thrones')
-elif series=="Sherlock":
-    rename_Sherlock('Sherlock')
-elif series=="Suits":
-    rename_Suits('Suits')
-elif series=="FIR":
-    rename_FIR("FIR")
-elif series=="How I Met Your Mother":
-    rename_How_I_Met_Your_Mother('How I Met Your Mother')
+# series=input("Main Title of the Web Series to rename: ")
+# if series=="Game of Thrones":
+#     try:
+#         rename_Game_of_Thrones('Game of Thrones')
+#     except:
+#         print("Already webseries is renamed")
+# elif series=="Sherlock":
+#     rename_Sherlock('Sherlock')
+# elif series=="Suits":
+#     rename_Suits('Suits')
+# elif series=="FIR":
+#     rename_FIR("FIR")
+# elif series=="How I Met Your Mother":
+#     rename_How_I_Met_Your_Mother('How I Met Your Mother')
+
+count=13
+while  count:
+    print("""\n select webseries title options to rename
+    1.Game of Thrones
+    2.Sherlock
+    3.Suits
+    4.FIR
+    5.How I Met Your Mother
+    6.Exit""")
+    a=input("Enter option : ")
+    if a=="1":
+        try:
+            rename_Game_of_Thrones('Game of Thrones')
+        except:
+            print("\n   !!!!!  Already webseries is renamed  !!!!! ")
+    elif a=="2":
+        try:
+            rename_Sherlock('Sherlock')
+        except:
+            print("\n   !!!!!  Already webseries is renamed  !!!!! ")
+    elif a=="3":
+        try:
+            rename_Suits('Suits')
+        except:
+            print("\n   !!!!!  Already webseries is renamed  !!!!! ")           
+    elif a=="4":
+        try:
+            rename_FIR("FIR")
+        except:
+            print("\n   !!!!!  Already webseries is renamed  !!!!! ")
+    elif a=="5":
+        try:
+            rename_How_I_Met_Your_Mother('How I Met Your Mother')
+        except:
+            print("\n   !!!!!  Already webseries is renamed  !!!!! ")
+    elif a=="6":
+        break
+    else :
+        print("\nPlease provide a valid input ..!")
+
+    count-=1
+
